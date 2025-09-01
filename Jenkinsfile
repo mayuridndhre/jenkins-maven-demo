@@ -2,9 +2,10 @@ pipeline {
     agent any
     
     tools {
-        maven 'Maven3'   // Jenkins मध्ये configure केलेलं Maven नाव
-        jdk 'Java11'     // Jenkins मध्ये configure केलेलं JDK नाव
-    }
+    maven 'Maven-3.9.9'   // Jenkins मधे दिसणारं Maven tool name
+    jdk 'JDK-11'          // Jenkins मधे दिसणारं JDK tool name
+}
+
 
     environment {
         TOMCAT_USER = 'admin'
