@@ -2,10 +2,9 @@ pipeline {
     agent any
     
     tools {
-    maven 'Maven-3.9.9'   // Jenkins मधे दिसणारं Maven tool name
-    jdk 'JDK-11'          // Jenkins मधे दिसणारं JDK tool name
-}
-
+        maven 'Maven-3.9.9'   // Jenkins मधे configure केलेले Maven tool name
+        jdk 'JDK-11'          // Jenkins मधे configure केलेले JDK tool name
+    }
 
     environment {
         TOMCAT_USER = 'admin'
@@ -23,7 +22,18 @@ pipeline {
 
         stage('Build with Maven') {
             steps {
-                sh 'mvn clean package'
+                sh 'mvn clean package -DskipTests'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
             }
         }
 
