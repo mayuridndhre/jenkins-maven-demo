@@ -44,7 +44,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {  // Jenkins मध्ये configure केलेले SonarQube server name
-                    sh 'mvn sonar:sonar -Dsonar.projectKey=pipeline-demo'
+                    sh 'mvn sonar:sonar -Dsonar.projectKey=my-java-app'
                 }
             }
         }
