@@ -52,7 +52,9 @@ pipeline {
         // 5️⃣ Quality Gate Check
         stage('Quality Gate') {
             steps {
-                waitForQualityGate abortPipeline: true
+                timeout(time: 5, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
             }
         }
 
@@ -70,11 +72,6 @@ pipeline {
             }
         }
     }
-
-    timeout(time: 5, unit: 'MINUTES') {
-    waitForQualityGate abortPipeline: true
-}
-
 
     post {
         success {
