@@ -38,6 +38,9 @@ pipeline {
         }
 
         stage('Deploy to Tomcat') {
+            when {
+                expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
+            }
             steps {
                 sh """
                 curl -u ${TOMCAT_USER}:${TOMCAT_PASS} \\
