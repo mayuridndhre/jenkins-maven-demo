@@ -71,6 +71,11 @@ pipeline {
         }
     }
 
+    timeout(time: 5, unit: 'MINUTES') {
+    waitForQualityGate abortPipeline: true
+}
+
+
     post {
         success {
             echo "✅ Build + Test + SonarQube Analysis + Deploy Passed!"
